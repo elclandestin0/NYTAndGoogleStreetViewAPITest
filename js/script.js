@@ -11,15 +11,12 @@ function loadData() {
     $wikiElem.text("");
     $nytElem.text("");
 
-    // load streetview
-
-    var $cityElement = $("#street").val();
-    var $streetElement = $("#city").val();
-    // YOUR CODE GOES HERE!
-    // STEP 1: COLLECT INPUT STREET AND CITY
-    // STEP 2: APPEND BACK TO THE HTML PAGE THE BACKGROUND IMAGE
-    //         AS A CLASS CALLED "bgimage"
-
+    var cityElement = $("#street").val();
+    var streetElement = $("#city").val();
+    var address = streetElement + ', ' + cityElement;
+    var googleViewURL = 'http://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address +'';
+    $body.append(
+      '<img class ="bgimg" src="' + googleViewURL + '">"');
     return false;
 };
 
