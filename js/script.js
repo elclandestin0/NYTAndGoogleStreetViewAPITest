@@ -1,4 +1,3 @@
-
 function loadData() {
 
     var $body = $('body');
@@ -15,39 +14,30 @@ function loadData() {
     var cityElement = $("#city").val();
     var streetElement = $("#street").val();
     var address = streetElement + ', ' + cityElement;
-    var googleViewURL = 'http://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address +'';
+    var googleViewURL = 'http://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address + '';
     $body.append(
-      '<img class ="bgimg" src="' + googleViewURL + '">"');
-
-
+        '<img class ="bgimg" src="' + googleViewURL + '">"');
+    // NYT API request for articles
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-      url += '?' + $.param({
+    url += '?' + $.param({
         'api-key': "d7cb30577300448dbaee5c6fec97599b",
         'q': cityElement
-      });
+    });
 
-    $.getJSON(url, function(data){
-      var articles = data['response']['docs'];
-      var list_of_articles = [];
-      for (var i = 0; i < articles.length; i++){
-        list_of_articles.push(
-          "<li class='article'> <a href='" + articles[i]["web_url"] +"'> '" + articles[i]["snippet"] + "'</a>'");
-      };
-      // $.each(articles, function(key, val){
-      //   console.log(key +":" + val);
-      //   list_of_articles.push("<li id='" + key +"'>'" + val + "</li>");
-      // });
-      $nytElem.append(list_of_articles);
-      // $.each(data, function(key, val){
-      //   articles.push("<li id =")
-      // })
+    $.getJSON(url, function(data) {
+        var articles = data['response']['docs'];
+        var list_of_articles = [];
+        for (var i = 0; i < articles.length; i++) {
+            list_of_articles.push(
+                "<li class='article'> <a href='" +
+                articles[i]["web_url"] + "'> '" +
+                articles[i]["snippet"] + "'</a>'"
+              );
+        };
+        $nytElem.append(list_of_articles);
     });
     return false;
-    };
-
-    // NYT article request
-
-
+};
 
 
 $('#form-container').submit(loadData);
