@@ -27,7 +27,17 @@ function loadData() {
       });
 
     $.getJSON(url, function(data){
-      console.log(data['response']['docs'][0]['web_url']);
+      var articles = data['response']['docs'];
+      var list_of_articles = [];
+      for (var i = 0; i < articles.length; i++){
+        list_of_articles.push(
+          "<li class='article'> <a href='" + articles[i]["web_url"] +"'> '" + articles[i]["snippet"] + "'</a>'");
+      };
+      // $.each(articles, function(key, val){
+      //   console.log(key +":" + val);
+      //   list_of_articles.push("<li id='" + key +"'>'" + val + "</li>");
+      // });
+      $nytElem.append(list_of_articles);
       // $.each(data, function(key, val){
       //   articles.push("<li id =")
       // })
