@@ -32,9 +32,11 @@ function loadData() {
                 "<li class='article'> <a href='" +
                 articles[i]["web_url"] + "'> '" +
                 articles[i]["snippet"] + "'</a>'"
-              );
+            );
         };
         $nytElem.append(list_of_articles);
+    }).error(function() {
+        $nytElem.append("<h1> New York Times failed to load! </h1>");
     });
     return false;
 };
