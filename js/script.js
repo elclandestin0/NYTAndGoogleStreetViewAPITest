@@ -47,6 +47,9 @@ function loadData() {
         'format': 'json',
         'callback': 'wikiCallback'
     });
+    var wikiTimeout = setTimeout(function(){
+      $wikiElem.text("failed to get wikipedia request");
+    }, 10000);
     $.ajax({
         url: wikiUrl,
         dataType: "jsonp",
@@ -61,6 +64,7 @@ function loadData() {
                 );
             };
             $wikiElem.append(wiki_articles);
+            clearTimeout(wikiTimeout);
         }
     });
     return false;
