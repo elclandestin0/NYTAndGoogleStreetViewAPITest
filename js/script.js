@@ -47,9 +47,10 @@ function loadData() {
         'format': 'json',
         'callback': 'wikiCallback'
     });
+    // A smart hack to work around an error message on jsonp
     var wikiTimeout = setTimeout(function(){
-      $wikiElem.text("failed to get wikipedia request");
-    }, 10000);
+      $wikiElem.append("<h1>Failed to get wikipedia request!</h1>");
+    }, 5000);
     $.ajax({
         url: wikiUrl,
         dataType: "jsonp",
